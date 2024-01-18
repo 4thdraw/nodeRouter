@@ -1,0 +1,27 @@
+{
+  "name": "node14",
+  "version": "1.0.0",
+  "description": "리액트와 노드서버, mysql",
+  "main": "web.js",
+  "scripts": {
+    "start": "node ./web.js",
+    "front": "cd front && npm run start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "javascriptnode@sunjuhyeon.cafe24app.com:javascriptnode_sunjuhyeon"
+  },
+  "keywords": [
+    "리액트",
+    "노드",
+    "mysql"
+  ],
+  "author": "방보영",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7"
+  }
+}

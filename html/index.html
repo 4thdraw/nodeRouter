@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tictac">
+         ⏰<span>0:0:0</span>⏰
+    </div>
+    <button class="stopbtn">스톱</button>
+    <button class="startagainbtn" >시작</button>
+    <button class="resetbtn">리셋</button>
+    <script>
+        const myobj ={
+            starttime  : 0,
+            minutes : 0,
+            seconds : 0,
+            milliseconds : 0,
+            isPause : false,           
+            
+            startbtn : "",
+            timeSpan : document.querySelector("#tictac span"),
+            start(){
+              
+                if(!this.isPause){
+                    this.isPause = true;
+                  this.startbtn =  setInterval(() => {
+                        this.starttime += 10;                        
+                        this.minutes = Math.floor(this.starttime / (60 * 1000)); //1초는 1000 1초가 60개 곱하니깐 분
+                        this.seconds = Math.floor((this.starttime % (60 * 1000)) / 1000) //분으로 나눈 나머지이니깐 초
+                        this.milliseconds = (this.starttime % 1000).toString().padStart(3, '0').slice(0, 2);                   
+                        this.timeSpan.innerHTML = `${this.minutes}:${this.seconds}:${this.milliseconds}`;
+                    }, 10);
+                 
+                }
+            },
+            stop(){
+                this.isPause = false;                 
+                clearInterval(this.startbtn);
+            },
+            reset(){                
+                this.stop();
+                this.starttime = 0;
+                this.milliseconds = 0;
+                this.minutes = 0;
+                this.seconds = 0;
+                this.timeSpan.innerHTML = `${this.minutes}:${this.seconds}:${this.milliseconds}`;               
+            }
+        }
+        
+        document.querySelector(".startagainbtn").addEventListener('click',()=>{
+            myobj.start();
+        })
+        document.querySelector(".stopbtn").addEventListener('click',()=>{
+            myobj.stop();
+        })
+        document.querySelector(".resetbtn").addEventListener('click',()=>{
+            myobj.reset();
+        })
+    </script>
+</body>
+</html>
